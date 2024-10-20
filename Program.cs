@@ -15,7 +15,7 @@ namespace Assignment_2
 
             // Question 2: Sort Array by Parity
             Console.WriteLine("Question 2:");
-            int[] nums2 = { 3, 1, 2, 4 };
+            int[] nums2 = { 0, 1, 2 };
             int[] sortedArray = SortArrayByParity(nums2);
             Console.WriteLine(string.Join(",", sortedArray));
 
@@ -62,8 +62,18 @@ namespace Assignment_2
         {
             try
             {
-                // Write your code here
-                return new List<int>(); // Placeholder
+                int n = nums.Length;
+            // Create a list with numbers from 1 to n
+            HashSet<int> fullSet = new HashSet<int>(Enumerable.Range(1, n));
+            
+            // Remove duplicates from input list and create a HashSet
+            HashSet<int> inputSet = new HashSet<int>(nums);
+
+            // Remove the elements that are present in the input set from the full set
+            fullSet.ExceptWith(inputSet);
+
+            // Return the missing numbers as a list
+            return fullSet.ToList();
             }
             catch (Exception)
             {
@@ -76,8 +86,29 @@ namespace Assignment_2
         {
             try
             {
-                // Write your code here
-                return new int[0]; // Placeholder
+                // Create a new list to store the result
+            List<int> result = new List<int>();
+
+            // Iterate through the original array and append even numbers to the result
+            foreach (var num in nums)
+            {
+                if (num % 2 == 0)
+                {
+                    result.Add(num);
+                }
+            }
+
+            // After adding all even numbers, append the odd numbers
+            foreach (var num in nums)
+            {
+                if (num % 2 != 0)
+                {
+                    result.Add(num);
+                }
+            }
+
+            // Convert the result list back to an array and return
+            return result.ToArray();
             }
             catch (Exception)
             {
