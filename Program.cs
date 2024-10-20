@@ -86,9 +86,7 @@ namespace Assignment_2
         {
             try
             {
-                // Create a new list to store the result
             List<int> result = new List<int>();
-
             // Iterate through the original array and append even numbers to the result
             foreach (var num in nums)
             {
@@ -97,7 +95,6 @@ namespace Assignment_2
                     result.Add(num);
                 }
             }
-
             // After adding all even numbers, append the odd numbers
             foreach (var num in nums)
             {
@@ -106,7 +103,6 @@ namespace Assignment_2
                     result.Add(num);
                 }
             }
-
             // Convert the result list back to an array and return
             return result.ToArray();
             }
@@ -123,7 +119,6 @@ namespace Assignment_2
             {
                 // Create a dictionary to store numbers and their indices
             Dictionary<int, int> numDict = new Dictionary<int, int>();
-
             // Iterate through the array
             for (int i = 0; i < nums.Length; i++)
             {
@@ -136,11 +131,9 @@ namespace Assignment_2
                     // If the complement is found, return the indices
                     return new int[] { numDict[complement], i };
                 }
-
                 // If not found, add the current number and its index to the dictionary
                 numDict[nums[i]] = i;
             }
-
                 // Return an empty array if no solution is found
                 return new int[0];
             }
@@ -162,7 +155,6 @@ namespace Assignment_2
                 // or the first two (smallest negative numbers) and the largest number.
                 int maxProduct = Math.Max(nums[n - 1] * nums[n - 2] * nums[n - 3],
                                         nums[0] * nums[1] * nums[n - 1]);
-
                 return maxProduct;
             }
             catch (Exception)
@@ -204,7 +196,6 @@ namespace Assignment_2
             {
                 int left = 0;
                 int right = nums.Length - 1;
-
                 // Binary search loop
                 while (left < right)
                 {
@@ -221,7 +212,6 @@ namespace Assignment_2
                     right = mid;
                 }
             }
-
                     // After the loop, left == right and points to the minimum element
                     return nums[left];
             }
