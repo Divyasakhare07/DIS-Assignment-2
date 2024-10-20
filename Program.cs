@@ -21,8 +21,8 @@ namespace Assignment_2
 
             // Question 3: Two Sum
             Console.WriteLine("Question 3:");
-            int[] nums3 = { 2, 7, 11, 15 };
-            int target = 9;
+            int[] nums3 = [3, 2, 4];
+            int target = 6;
             int[] indices = TwoSum(nums3, target);
             Console.WriteLine(string.Join(",", indices));
 
@@ -121,8 +121,28 @@ namespace Assignment_2
         {
             try
             {
-                // Write your code here
-                return new int[0]; // Placeholder
+                // Create a dictionary to store numbers and their indices
+            Dictionary<int, int> numDict = new Dictionary<int, int>();
+
+            // Iterate through the array
+            for (int i = 0; i < nums.Length; i++)
+            {
+                // Calculate the complement (target - current number)
+                int complement = target - nums[i];
+
+                // Check if the complement exists in the dictionary
+                if (numDict.ContainsKey(complement))
+                {
+                    // If the complement is found, return the indices
+                    return new int[] { numDict[complement], i };
+                }
+
+                // If not found, add the current number and its index to the dictionary
+                numDict[nums[i]] = i;
+            }
+
+                // Return an empty array if no solution is found
+                return new int[0];
             }
             catch (Exception)
             {
@@ -135,8 +155,15 @@ namespace Assignment_2
         {
             try
             {
-                // Write your code here
-                return 0; // Placeholder
+                Array.Sort(nums);
+                int n = nums.Length;
+
+                // Maximum product could be either from the last three numbers 
+                // or the first two (smallest negative numbers) and the largest number.
+                int maxProduct = Math.Max(nums[n - 1] * nums[n - 2] * nums[n - 3],
+                                        nums[0] * nums[1] * nums[n - 1]);
+
+                return maxProduct;
             }
             catch (Exception)
             {
@@ -149,8 +176,20 @@ namespace Assignment_2
         {
             try
             {
-                // Write your code here
-                return "101010"; // Placeholder
+                if (decimalNumber == 0)
+                    {
+                        return "0"; // Special case for zero
+                    }
+
+                string binary = "";
+                while (decimalNumber > 0)
+                {
+                    int remainder = decimalNumber % 2; // Get remainder (0 or 1)
+                    binary = remainder + binary;       // Prepend the remainder to the binary string
+                    decimalNumber /= 2;                // Divide the number by 2
+                }
+
+                return binary;
             }
             catch (Exception)
             {
@@ -163,8 +202,28 @@ namespace Assignment_2
         {
             try
             {
-                // Write your code here
-                return 0; // Placeholder
+                int left = 0;
+                int right = nums.Length - 1;
+
+                // Binary search loop
+                while (left < right)
+                {
+                    int mid = left + (right - left) / 2;
+
+                // If middle element is greater than right element, minimum is in the right half
+                if (nums[mid] > nums[right])
+                {
+                    left = mid + 1;
+                }
+                else
+                {
+                    // Otherwise, it's in the left half (or could be the middle element itself)
+                    right = mid;
+                }
+            }
+
+                    // After the loop, left == right and points to the minimum element
+                    return nums[left];
             }
             catch (Exception)
             {
@@ -177,8 +236,23 @@ namespace Assignment_2
         {
             try
             {
-                // Write your code here
-                return false; // Placeholder
+                // Negative numbers are not palindromes
+                if (x < 0)
+                    return false;
+
+                int original = x;
+                int reversed = 0;
+
+                // Reverse the number
+                while (x > 0)
+                {
+                    int lastDigit = x % 10; // Extract the last digit
+                    reversed = reversed * 10 + lastDigit; // Build the reversed number
+                    x /= 10; // Remove the last digit from x
+                }
+
+                // Compare the reversed number with the original
+                return original == reversed;
             }
             catch (Exception)
             {
@@ -191,8 +265,21 @@ namespace Assignment_2
         {
             try
             {
-                // Write your code here
-                return 0; // Placeholder
+                // Base cases
+                if (n == 0) return 0;
+                if (n == 1) return 1;
+
+                int a = 0, b = 1, fib = 0;
+
+                // Calculate Fibonacci iteratively
+                for (int i = 2; i <= n; i++)
+                {
+                    fib = a + b; // F(n) = F(n-1) + F(n-2)
+                    a = b;       // Move to the next pair of numbers
+                    b = fib;
+                }
+
+                return fib;
             }
             catch (Exception)
             {
